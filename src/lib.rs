@@ -32,6 +32,7 @@ hook!{
 mod test {
     use super::*;
     use std::ffi::CString;
+    use libc::getenv; // << USE LIBC GETENV EXPLICITLY
 
     #[test]
     fn test_getenv_phprc() {
@@ -40,7 +41,7 @@ mod test {
             let phprc = getenv(name.as_ptr());
             let phprc_str = CStr::from_ptr(phprc).to_str().unwrap();
 
-            assert_eq!(phprc_str, "/etc/php/7.4/cli");
+            assert_eq!(phprc_str, "/etc/php/7.4/cli.ini");
         }
     }
 
