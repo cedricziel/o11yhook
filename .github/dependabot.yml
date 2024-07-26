@@ -11,15 +11,15 @@ updates:
    schedule:
      interval: daily
    assignees:
-      - cedricziel
+   - cedricziel
 
  - package-ecosystem: "cargo"
-    directory: "/"
-    schedule:
-      interval: "daily"
-    ignore:
-      # These are peer deps of Cargo and should not be automatically bumped
-      - dependency-name: "semver"
-      - dependency-name: "crates-io"
-    assignees:
-      - cedricziel
+   directory: "/"
+   schedule:
+     interval: "daily"
+   ignore:
+    # These are peer deps of Cargo and should not be automatically bumped
+     - dependency-name: "semver"
+     - dependency-name: "crates-io"
+   assignees:
+   - cedricziel
