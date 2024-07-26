@@ -13,7 +13,7 @@ lazy_static! {
     static ref PHP_INI_PATH_CSTR: Mutex<CString> = Mutex::new(CString::new(PHP_INI_PATH).unwrap());
 }
 
-hook!{
+hook! {
     unsafe fn getenv(c_name: *const c_char) -> *const c_char => o11yhook_getenv {
         let retval = real!(getenv)(c_name);
 
@@ -32,7 +32,7 @@ hook!{
 mod test {
     use super::*;
     use std::ffi::CString;
-    use libc::getenv; // << USE LIBC GETENV EXPLICITLY
+    use libc::getenv;
 
     #[test]
     fn test_getenv_phprc() {
@@ -50,7 +50,7 @@ mod test {
         unsafe {
             let name = CString::new("PATH").unwrap();
             let phprc = getenv(name.as_ptr());
-            let phprc = std::str::from_utf8(std::ffi::CStr::from_ptr(phprc).to_bytes()).unwrap();
+            let phprc = std::str::from_utf8(CStr::from_ptr(phprc).to_bytes()).unwrap();
 
             assert_ne!(phprc, "");
         }
