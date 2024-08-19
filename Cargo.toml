@@ -11,5 +11,5 @@ crate-type = ["dylib"]
 
 [dependencies]
 lazy_static = "1.5.0"
-libc = "0.2.156"
+libc = "0.2.158"
 redhook = "2.0.0"
